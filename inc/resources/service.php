@@ -1,5 +1,26 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Service Resource
+|--------------------------------------------------------------------------
+|
+| This file is used to register and configure the service resource
+| within the WordPress admin interface.
+|
+*/
+
+// Define WordPress capabilities for this resource
+$wp_caps = [
+    'manage_services',
+    'edit_services',
+    'delete_services',
+    'view_services',
+    'publish_services',
+];
+
+tr_roles()->updateRolesCapabilities('administrator', $wp_caps);
+
 $service = mm_create_custom_resource('Service', 'ServiceController', 'Services')
     ->setIcon('cart')
     ->setPosition(2);
