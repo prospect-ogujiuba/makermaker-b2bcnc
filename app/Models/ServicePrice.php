@@ -10,6 +10,14 @@ class ServicePrice extends Model
 {
     protected $resource = 'srvc_service_prices';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_id',
         'pricing_tier_id',

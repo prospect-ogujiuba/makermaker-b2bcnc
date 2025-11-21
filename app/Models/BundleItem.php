@@ -9,6 +9,14 @@ class BundleItem extends Model
 {
     protected $resource = 'srvc_bundle_items';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'bundle_id',
         'service_id',
@@ -58,7 +66,7 @@ class BundleItem extends Model
 
     /**
      * Get all items in a bundle
-     * 
+     *
      * @param int $bundleId
      */
     public static function getByBundle($bundleId)
@@ -75,7 +83,7 @@ class BundleItem extends Model
 
     /**
      * Get all bundles containing a service
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByService($serviceId)
@@ -89,7 +97,7 @@ class BundleItem extends Model
 
     /**
      * Find specific bundle-service relationship
-     * 
+     *
      * @param int $bundleId
      * @param int $serviceId
      * @return static|null
@@ -108,7 +116,7 @@ class BundleItem extends Model
 
     /**
      * Get the related ServiceBundle model
-     * 
+     *
      * @return ServiceBundle|null
      */
     public function getBundle()
@@ -122,7 +130,7 @@ class BundleItem extends Model
 
     /**
      * Get the related Service model
-     * 
+     *
      * @return Service|null
      */
     public function getService()
@@ -136,7 +144,7 @@ class BundleItem extends Model
 
     /**
      * Get item quantity
-     * 
+     *
      * @return int
      */
     public function getQuantity()
@@ -146,7 +154,7 @@ class BundleItem extends Model
 
     /**
      * Get item price (individual service price in bundle context)
-     * 
+     *
      * @return float|null
      */
     public function getPrice()
@@ -156,7 +164,7 @@ class BundleItem extends Model
 
     /**
      * Get formatted item price
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -177,7 +185,7 @@ class BundleItem extends Model
 
     /**
      * Calculate total price for this item (price × quantity)
-     * 
+     *
      * @return float|null
      */
     public function calculateTotal()
@@ -193,7 +201,7 @@ class BundleItem extends Model
 
     /**
      * Get formatted total price
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -214,7 +222,7 @@ class BundleItem extends Model
 
     /**
      * Check if item is required in the bundle
-     * 
+     *
      * @return bool
      */
     public function isRequired()
@@ -224,7 +232,7 @@ class BundleItem extends Model
 
     /**
      * Check if item is optional in the bundle
-     * 
+     *
      * @return bool
      */
     public function isOptional()
@@ -234,7 +242,7 @@ class BundleItem extends Model
 
     /**
      * Get item priority/sort order
-     * 
+     *
      * @return int
      */
     public function getPriority()
@@ -244,7 +252,7 @@ class BundleItem extends Model
 
     /**
      * Check if quantity is customizable
-     * 
+     *
      * @return bool
      */
     public function isQuantityCustomizable()
@@ -254,7 +262,7 @@ class BundleItem extends Model
 
     /**
      * Get minimum quantity allowed
-     * 
+     *
      * @return int
      */
     public function getMinQuantity()
@@ -264,7 +272,7 @@ class BundleItem extends Model
 
     /**
      * Get maximum quantity allowed
-     * 
+     *
      * @return int|null
      */
     public function getMaxQuantity()
@@ -274,7 +282,7 @@ class BundleItem extends Model
 
     /**
      * Check if quantity is unlimited
-     * 
+     *
      * @return bool
      */
     public function isUnlimitedQuantity()
@@ -284,7 +292,7 @@ class BundleItem extends Model
 
     /**
      * Validate quantity
-     * 
+     *
      * @param int $quantity
      * @return bool
      */
@@ -305,7 +313,7 @@ class BundleItem extends Model
 
     /**
      * Get formatted quantity display
-     * 
+     *
      * @return string
      */
     public function getFormattedQuantity()
@@ -321,7 +329,7 @@ class BundleItem extends Model
 
     /**
      * Get discount applied to this item (if different from bundle discount)
-     * 
+     *
      * @return float|null
      */
     public function getItemDiscount()
@@ -331,7 +339,7 @@ class BundleItem extends Model
 
     /**
      * Check if item has individual discount
-     * 
+     *
      * @return bool
      */
     public function hasItemDiscount()
@@ -342,7 +350,7 @@ class BundleItem extends Model
 
     /**
      * Validate bundle item data
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

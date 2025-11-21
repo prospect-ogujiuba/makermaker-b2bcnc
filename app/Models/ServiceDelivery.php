@@ -9,6 +9,14 @@ class ServiceDelivery extends Model
 {
     protected $resource = 'srvc_service_delivery';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_id',
         'delivery_method_id',
@@ -65,7 +73,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get all delivery methods for a service
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByService($serviceId)
@@ -79,7 +87,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get all services using a delivery method
-     * 
+     *
      * @param int $deliveryMethodId
      */
     public static function getByDeliveryMethod($deliveryMethodId)
@@ -93,7 +101,7 @@ class ServiceDelivery extends Model
 
     /**
      * Find specific service-delivery method relationship
-     * 
+     *
      * @param int $serviceId
      * @param int $deliveryMethodId
      * @return static|null
@@ -112,7 +120,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get the related Service model
-     * 
+     *
      * @return Service|null
      */
     public function getService()
@@ -126,7 +134,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get the related DeliveryMethod model
-     * 
+     *
      * @return DeliveryMethod|null
      */
     public function getDeliveryMethod()
@@ -140,7 +148,7 @@ class ServiceDelivery extends Model
 
     /**
      * Check if this is the default delivery method for the service
-     * 
+     *
      * @return bool
      */
     public function isDefault()
@@ -150,7 +158,7 @@ class ServiceDelivery extends Model
 
     /**
      * Check if this delivery method is available for the service
-     * 
+     *
      * @return bool
      */
     public function isAvailable()
@@ -160,7 +168,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get additional cost for this delivery method (beyond base service price)
-     * 
+     *
      * @return float|null
      */
     public function getAdditionalCost()
@@ -170,7 +178,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get formatted additional cost
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -191,7 +199,7 @@ class ServiceDelivery extends Model
 
     /**
      * Check if additional cost is included (zero)
-     * 
+     *
      * @return bool
      */
     public function isIncluded()
@@ -202,7 +210,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get estimated delivery time in days (overrides delivery method default if set)
-     * 
+     *
      * @return int|null
      */
     public function getEstimatedDays()
@@ -217,7 +225,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get formatted estimated delivery time
-     * 
+     *
      * @return string
      */
     public function getFormattedEstimate()
@@ -246,7 +254,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get priority/sort order
-     * 
+     *
      * @return int
      */
     public function getPriority()
@@ -256,7 +264,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get total cost (delivery method base cost + additional cost)
-     * 
+     *
      * @return float|null
      */
     public function getTotalCost()
@@ -274,7 +282,7 @@ class ServiceDelivery extends Model
 
     /**
      * Get formatted total cost
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -295,7 +303,7 @@ class ServiceDelivery extends Model
 
     /**
      * Validate service-delivery relationship
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

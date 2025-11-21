@@ -9,6 +9,14 @@ class ServiceType extends Model
 {
     protected $resource = 'srvc_service_types';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'code',
@@ -114,7 +122,7 @@ class ServiceType extends Model
      */
     public function canDeliverRemotely()
     {
-        return (bool) $this->supports_remote;
+        return (bool)$this->supports_remote;
     }
 
     /**
@@ -122,7 +130,7 @@ class ServiceType extends Model
      */
     public function requiresOnSite()
     {
-        return (bool) $this->requires_site_visit;
+        return (bool)$this->requires_site_visit;
     }
 
     /**

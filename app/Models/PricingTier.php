@@ -9,6 +9,14 @@ class PricingTier extends Model
 {
     protected $resource = 'srvc_pricing_tiers';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'code',
@@ -119,7 +127,7 @@ class PricingTier extends Model
         }
 
         if ($this->min_volume == $this->max_volume) {
-            return (string) $this->min_volume;
+            return (string)$this->min_volume;
         }
 
         return "{$this->min_volume} - {$this->max_volume}";

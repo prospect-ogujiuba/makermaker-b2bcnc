@@ -9,6 +9,14 @@ class ServiceAddon extends Model
 {
     protected $resource = 'srvc_service_addons';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_id',
         'addon_service_id',
@@ -66,7 +74,7 @@ class ServiceAddon extends Model
 
     /**
      * Get all active addons
-     * 
+     *
      */
     public static function getActive()
     {
@@ -75,7 +83,7 @@ class ServiceAddon extends Model
 
     /**
      * Get all addons for a service
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByService($serviceId)
@@ -89,7 +97,7 @@ class ServiceAddon extends Model
 
     /**
      * Get active addons for a service
-     * 
+     *
      * @param int $serviceId
      */
     public static function getActiveByService($serviceId)
@@ -106,7 +114,7 @@ class ServiceAddon extends Model
 
     /**
      * Find addon by slug
-     * 
+     *
      * @param string $slug
      * @return static|null
      */
@@ -121,7 +129,7 @@ class ServiceAddon extends Model
 
     /**
      * Find addon by service and slug
-     * 
+     *
      * @param int $serviceId
      * @param string $slug
      * @return static|null
@@ -140,7 +148,7 @@ class ServiceAddon extends Model
 
     /**
      * Get the related Service model
-     * 
+     *
      * @return Service|null
      */
     public function getService()
@@ -154,7 +162,7 @@ class ServiceAddon extends Model
 
     /**
      * Get addon price
-     * 
+     *
      * @return float|null
      */
     public function getPrice()
@@ -164,7 +172,7 @@ class ServiceAddon extends Model
 
     /**
      * Get formatted addon price
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -185,7 +193,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if addon is free
-     * 
+     *
      * @return bool
      */
     public function isFree()
@@ -196,7 +204,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if addon is recurring
-     * 
+     *
      * @return bool
      */
     public function isRecurring()
@@ -206,7 +214,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if addon is one-time
-     * 
+     *
      * @return bool
      */
     public function isOneTime()
@@ -216,7 +224,7 @@ class ServiceAddon extends Model
 
     /**
      * Get recurring interval (monthly, yearly, etc.)
-     * 
+     *
      * @return string|null
      */
     public function getRecurringInterval()
@@ -230,7 +238,7 @@ class ServiceAddon extends Model
 
     /**
      * Get formatted price with interval
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -247,7 +255,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if addon is required
-     * 
+     *
      * @return bool
      */
     public function isRequired()
@@ -257,7 +265,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if addon is optional
-     * 
+     *
      * @return bool
      */
     public function isOptional()
@@ -267,7 +275,7 @@ class ServiceAddon extends Model
 
     /**
      * Get maximum quantity allowed
-     * 
+     *
      * @return int|null
      */
     public function getMaxQuantity()
@@ -277,7 +285,7 @@ class ServiceAddon extends Model
 
     /**
      * Check if quantity is unlimited
-     * 
+     *
      * @return bool
      */
     public function isUnlimitedQuantity()
@@ -287,7 +295,7 @@ class ServiceAddon extends Model
 
     /**
      * Validate quantity
-     * 
+     *
      * @param int $quantity
      * @return bool
      */
@@ -308,7 +316,7 @@ class ServiceAddon extends Model
 
     /**
      * Get addon priority/sort order
-     * 
+     *
      * @return int
      */
     public function getPriority()
@@ -318,7 +326,7 @@ class ServiceAddon extends Model
 
     /**
      * Calculate price for quantity
-     * 
+     *
      * @param int $quantity
      * @return float|null
      */
@@ -339,7 +347,7 @@ class ServiceAddon extends Model
 
     /**
      * Get formatted price for quantity
-     * 
+     *
      * @param int $quantity
      * @param string $currencySymbol
      * @return string
@@ -361,7 +369,7 @@ class ServiceAddon extends Model
 
     /**
      * Validate addon data
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

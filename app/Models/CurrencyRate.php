@@ -9,6 +9,14 @@ class CurrencyRate extends Model
 {
     protected $resource = 'srvc_currency_rates';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'from_currency',
         'to_currency',
@@ -116,7 +124,7 @@ class CurrencyRate extends Model
         if (!$rate) {
             throw new \RuntimeException(
                 "No exchange rate found for {$fromCurrency} to {$toCurrency}" .
-                    ($date ? " on {$date}" : "")
+                ($date ? " on {$date}" : "")
             );
         }
 

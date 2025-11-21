@@ -9,6 +9,14 @@ class Deliverable extends Model
 {
     protected $resource = 'srvc_deliverables';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+    
     protected $fillable = [
         'name',
         'description',
@@ -50,7 +58,7 @@ class Deliverable extends Model
 
     /**
      * Get all active deliverables
-     * 
+     *
      */
     public static function getActive()
     {
@@ -59,7 +67,7 @@ class Deliverable extends Model
 
     /**
      * Find deliverable by slug
-     * 
+     *
      * @param string $slug
      * @return static|null
      */
@@ -74,7 +82,7 @@ class Deliverable extends Model
 
     /**
      * Find deliverables by type
-     * 
+     *
      * @param string $type
      */
     public static function findByType($type)
@@ -88,7 +96,7 @@ class Deliverable extends Model
 
     /**
      * Check if deliverable is digital/downloadable
-     * 
+     *
      * @return bool
      */
     public function isDigital()
@@ -98,7 +106,7 @@ class Deliverable extends Model
 
     /**
      * Check if deliverable is physical
-     * 
+     *
      * @return bool
      */
     public function isPhysical()
@@ -108,7 +116,7 @@ class Deliverable extends Model
 
     /**
      * Get formatted deliverable name with type
-     * 
+     *
      * @return string
      */
     public function getFormattedName()
@@ -121,7 +129,7 @@ class Deliverable extends Model
 
     /**
      * Get all services that include this deliverable
-     * 
+     *
      * @return \TypeRocket\Models\Results|Service[]
      */
     public function getServices()
@@ -145,7 +153,7 @@ class Deliverable extends Model
 
     /**
      * Check if deliverable is required (based on default settings)
-     * 
+     *
      * @return bool
      */
     public function isRequired()
@@ -155,7 +163,7 @@ class Deliverable extends Model
 
     /**
      * Get deliverable quantity/unit label
-     * 
+     *
      * @return string
      */
     public function getUnitLabel()
@@ -165,7 +173,7 @@ class Deliverable extends Model
 
     /**
      * Validate deliverable data
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

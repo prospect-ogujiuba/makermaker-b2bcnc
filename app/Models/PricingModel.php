@@ -9,6 +9,14 @@ class PricingModel extends Model
 {
     protected $resource = 'srvc_pricing_models';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'code',
@@ -94,7 +102,7 @@ class PricingModel extends Model
      */
     public function isTimeBased()
     {
-        return (bool) $this->is_time_based;
+        return (bool)$this->is_time_based;
     }
 
     /**

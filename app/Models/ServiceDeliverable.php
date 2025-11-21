@@ -8,6 +8,14 @@ class ServiceDeliverable extends Model
 {
     protected $resource = 'srvc_service_deliverables';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_id',
         'deliverable_id',
@@ -55,7 +63,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get all deliverables for a service
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByService($serviceId)
@@ -69,7 +77,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get all services using a deliverable
-     * 
+     *
      * @param int $deliverableId
      */
     public static function getByDeliverable($deliverableId)
@@ -83,7 +91,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Find specific service-deliverable relationship
-     * 
+     *
      * @param int $serviceId
      * @param int $deliverableId
      * @return static|null
@@ -102,7 +110,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get the related Service model
-     * 
+     *
      * @return Service|null
      */
     public function getService()
@@ -116,7 +124,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get the related Deliverable model
-     * 
+     *
      * @return Deliverable|null
      */
     public function getDeliverable()
@@ -130,7 +138,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Check if this deliverable is required for the service
-     * 
+     *
      * @return bool
      */
     public function isRequired()
@@ -140,7 +148,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Check if this deliverable is optional for the service
-     * 
+     *
      * @return bool
      */
     public function isOptional()
@@ -150,7 +158,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get quantity for this deliverable
-     * 
+     *
      * @return int
      */
     public function getQuantity()
@@ -160,7 +168,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get formatted quantity with unit
-     * 
+     *
      * @return string
      */
     public function getFormattedQuantity()
@@ -174,7 +182,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get estimated delivery timeframe (in days)
-     * 
+     *
      * @return int|null
      */
     public function getDeliveryDays()
@@ -184,7 +192,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Get formatted delivery timeframe
-     * 
+     *
      * @return string
      */
     public function getFormattedDeliveryTime()
@@ -208,7 +216,7 @@ class ServiceDeliverable extends Model
 
     /**
      * Validate service-deliverable relationship
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

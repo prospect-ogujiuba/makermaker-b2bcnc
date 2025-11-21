@@ -8,6 +8,14 @@ class ServiceCategory extends Model
 {
     protected $resource = 'srvc_categories';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'parent_id',
         'name',

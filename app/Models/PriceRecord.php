@@ -10,6 +10,14 @@ class PriceRecord extends Model
 {
     protected $resource = 'srvc_price_records';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_price_id',
         'change_type',

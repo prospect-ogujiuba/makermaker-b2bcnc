@@ -9,6 +9,14 @@ class Service extends Model
 {
     protected $resource = 'srvc_services';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'sku',
         'slug',

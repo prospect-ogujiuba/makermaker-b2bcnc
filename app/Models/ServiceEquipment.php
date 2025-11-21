@@ -9,6 +9,14 @@ class ServiceEquipment extends Model
 {
     protected $resource = 'srvc_service_equipment';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'service_id',
         'equipment_id',
@@ -122,7 +130,7 @@ class ServiceEquipment extends Model
      */
     public function isRequired()
     {
-        return (bool) $this->required;
+        return (bool)$this->required;
     }
 
     /**
@@ -130,7 +138,7 @@ class ServiceEquipment extends Model
      */
     public function isCostIncluded()
     {
-        return (bool) $this->cost_included;
+        return (bool)$this->cost_included;
     }
 
     /**

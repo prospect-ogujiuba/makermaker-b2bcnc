@@ -9,6 +9,14 @@ class ComplexityLevel extends Model
 {
     protected $resource = 'srvc_complexity_levels';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'level',

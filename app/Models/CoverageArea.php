@@ -9,6 +9,14 @@ class CoverageArea extends Model
 {
     protected $resource = 'srvc_coverage_areas';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'code',

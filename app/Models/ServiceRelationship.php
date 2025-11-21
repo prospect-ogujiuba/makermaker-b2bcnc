@@ -8,6 +8,13 @@ class ServiceRelationship extends Model
 {
     protected $resource = 'srvc_service_relationships';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
 
     protected $fillable = [
         'service_id',
@@ -75,7 +82,7 @@ class ServiceRelationship extends Model
 
     /**
      * Find all relationships for a service (both directions)
-     * 
+     *
      * @param int $serviceId
      * @param string|null $relationType Filter by relationship type
      * @return \TypeRocket\Database\Results
@@ -100,8 +107,7 @@ class ServiceRelationship extends Model
                 // Or inverse relationship
                 if ($inverseType && $inverseType !== $relationType) {
                     $q->orWhere('related_service_id', $serviceId)->where('relation_type', $inverseType);
-                }
-                // For symmetric relationships (incompatible_with, etc.)
+                } // For symmetric relationships (incompatible_with, etc.)
                 elseif ($inverseType === $relationType) {
                     $q->orWhere('related_service_id', $serviceId)->where('relation_type', $relationType);
                 }
@@ -113,7 +119,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get related services for a specific service with relationship context
-     * 
+     *
      * @param int $serviceId
      * @param string|null $relationType
      * @return array
@@ -148,9 +154,9 @@ class ServiceRelationship extends Model
 
     /**
      * Check if two services have a specific relationship (bidirectional)
-     * 
+     *
      * @param int $serviceId1
-     * @param int $serviceId2  
+     * @param int $serviceId2
      * @param string $relationType
      * @return bool
      */
@@ -177,7 +183,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get all relationships for a service (as parent)
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByParentService($serviceId)
@@ -191,7 +197,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get all relationships for a service (as related/child)
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByRelatedService($serviceId)
@@ -205,7 +211,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get all relationships for a service (both directions)
-     * 
+     *
      * @param int $serviceId
      */
     public static function getByService($serviceId)
@@ -222,7 +228,7 @@ class ServiceRelationship extends Model
 
     /**
      * Find relationships by type
-     * 
+     *
      * @param int $serviceId
      * @param string $relationType
      */
@@ -240,7 +246,7 @@ class ServiceRelationship extends Model
 
     /**
      * Find specific relationship between two services
-     * 
+     *
      * @param int $parentServiceId
      * @param int $relatedServiceId
      * @return static|null
@@ -259,7 +265,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get the parent Service model
-     * 
+     *
      * @return Service|null
      */
     public function getParentService()
@@ -273,7 +279,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get the related Service model
-     * 
+     *
      * @return Service|null
      */
     public function getRelatedService()
@@ -287,7 +293,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get the relationship type
-     * 
+     *
      * @return string
      */
     public function getType()
@@ -297,7 +303,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is prerequisite type
-     * 
+     *
      * @return bool
      */
     public function isPrerequisite()
@@ -307,7 +313,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is upsell type
-     * 
+     *
      * @return bool
      */
     public function isUpsell()
@@ -317,7 +323,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is cross-sell type
-     * 
+     *
      * @return bool
      */
     public function isCrossSell()
@@ -327,7 +333,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is alternative type
-     * 
+     *
      * @return bool
      */
     public function isAlternative()
@@ -337,7 +343,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is complement type
-     * 
+     *
      * @return bool
      */
     public function isComplement()
@@ -347,7 +353,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is required
-     * 
+     *
      * @return bool
      */
     public function isRequired()
@@ -357,7 +363,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is optional
-     * 
+     *
      * @return bool
      */
     public function isOptional()
@@ -367,7 +373,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get relationship priority/sort order
-     * 
+     *
      * @return int
      */
     public function getPriority()
@@ -377,7 +383,7 @@ class ServiceRelationship extends Model
 
     /**
      * Check if relationship is bidirectional
-     * 
+     *
      * @return bool
      */
     public function isBidirectional()
@@ -387,7 +393,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get the reverse relationship (if bidirectional)
-     * 
+     *
      * @return static|null
      */
     public function getReverseRelationship()
@@ -401,7 +407,7 @@ class ServiceRelationship extends Model
 
     /**
      * Get formatted relationship description
-     * 
+     *
      * @return string
      */
     public function getFormattedType()
@@ -422,7 +428,7 @@ class ServiceRelationship extends Model
 
     /**
      * Validate service relationship
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

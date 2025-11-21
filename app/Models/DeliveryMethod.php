@@ -9,6 +9,14 @@ class DeliveryMethod extends Model
 {
     protected $resource = 'srvc_delivery_methods';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'code',
@@ -59,7 +67,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get all active delivery methods
-     * 
+     *
      */
     public static function getActive()
     {
@@ -68,7 +76,7 @@ class DeliveryMethod extends Model
 
     /**
      * Find delivery method by slug
-     * 
+     *
      * @param string $slug
      * @return static|null
      */
@@ -83,7 +91,7 @@ class DeliveryMethod extends Model
 
     /**
      * Find delivery methods by type
-     * 
+     *
      * @param string $type
      */
     public static function findByType($type)
@@ -97,7 +105,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get digital delivery methods
-     * 
+     *
      */
     public static function getDigital()
     {
@@ -106,7 +114,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get physical delivery methods
-     * 
+     *
      */
     public static function getPhysical()
     {
@@ -115,7 +123,7 @@ class DeliveryMethod extends Model
 
     /**
      * Check if delivery method is digital
-     * 
+     *
      * @return bool
      */
     public function isDigital()
@@ -125,7 +133,7 @@ class DeliveryMethod extends Model
 
     /**
      * Check if delivery method is physical
-     * 
+     *
      * @return bool
      */
     public function isPhysical()
@@ -135,7 +143,7 @@ class DeliveryMethod extends Model
 
     /**
      * Check if delivery method requires shipping
-     * 
+     *
      * @return bool
      */
     public function requiresShipping()
@@ -145,7 +153,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get estimated delivery time (in days)
-     * 
+     *
      * @return int|null
      */
     public function getEstimatedDays()
@@ -155,7 +163,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get formatted estimated delivery time
-     * 
+     *
      * @return string
      */
     public function getFormattedEstimate()
@@ -184,7 +192,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get delivery cost (if applicable)
-     * 
+     *
      * @return float|null
      */
     public function getCost()
@@ -194,7 +202,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get formatted delivery cost
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -215,7 +223,7 @@ class DeliveryMethod extends Model
 
     /**
      * Check if delivery method is free
-     * 
+     *
      * @return bool
      */
     public function isFree()
@@ -226,7 +234,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get all services using this delivery method
-     * 
+     *
      * @return \TypeRocket\Models\Results|Service[]
      */
     public function getServices()
@@ -250,7 +258,7 @@ class DeliveryMethod extends Model
 
     /**
      * Get formatted delivery method name with type
-     * 
+     *
      * @return string
      */
     public function getFormattedName()
@@ -263,7 +271,7 @@ class DeliveryMethod extends Model
 
     /**
      * Validate delivery method data
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()

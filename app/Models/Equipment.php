@@ -10,6 +10,14 @@ class Equipment extends Model
 {
     protected $resource = 'srvc_equipment';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'sku',
         'name',
@@ -166,7 +174,7 @@ class Equipment extends Model
      */
     public function isConsumable()
     {
-        return (bool) $this->is_consumable;
+        return (bool)$this->is_consumable;
     }
 
     /**

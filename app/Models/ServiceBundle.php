@@ -9,6 +9,14 @@ class ServiceBundle extends Model
 {
     protected $resource = 'srvc_service_bundles';
 
+    protected $private = [
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by"
+    ];
+
     protected $fillable = [
         'name',
         'slug',
@@ -54,7 +62,7 @@ class ServiceBundle extends Model
 
     /**
      * Get all active bundles
-     * 
+     *
      */
     public static function getActive()
     {
@@ -63,7 +71,7 @@ class ServiceBundle extends Model
 
     /**
      * Find bundle by slug
-     * 
+     *
      * @param string $slug
      * @return static|null
      */
@@ -78,7 +86,7 @@ class ServiceBundle extends Model
 
     /**
      * Get bundles available on a specific date
-     * 
+     *
      * @param string $date Y-m-d format
      */
     public static function getAvailableOnDate($date)
@@ -100,7 +108,7 @@ class ServiceBundle extends Model
 
     /**
      * Get currently available bundles
-     * 
+     *
      */
     public static function getCurrentlyAvailable()
     {
@@ -109,7 +117,7 @@ class ServiceBundle extends Model
 
     /**
      * Get bundle base price
-     * 
+     *
      * @return float|null
      */
     public function getBasePrice()
@@ -119,7 +127,7 @@ class ServiceBundle extends Model
 
     /**
      * Get formatted base price
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -140,7 +148,7 @@ class ServiceBundle extends Model
 
     /**
      * Get discount percentage
-     * 
+     *
      * @return float|null
      */
     public function getDiscountPercentage()
@@ -150,7 +158,7 @@ class ServiceBundle extends Model
 
     /**
      * Get formatted discount
-     * 
+     *
      * @return string
      */
     public function getFormattedDiscount()
@@ -166,7 +174,7 @@ class ServiceBundle extends Model
 
     /**
      * Check if bundle has a discount
-     * 
+     *
      * @return bool
      */
     public function hasDiscount()
@@ -177,7 +185,7 @@ class ServiceBundle extends Model
 
     /**
      * Check if bundle is available on a specific date
-     * 
+     *
      * @param string $date Y-m-d format
      * @return bool
      */
@@ -203,7 +211,7 @@ class ServiceBundle extends Model
 
     /**
      * Check if bundle is currently available
-     * 
+     *
      * @return bool
      */
     public function isCurrentlyAvailable()
@@ -213,7 +221,7 @@ class ServiceBundle extends Model
 
     /**
      * Get all bundle items
-     * 
+     *
      * @return \TypeRocket\Models\Results|BundleItem[]
      */
     public function getBundleItems()
@@ -223,7 +231,7 @@ class ServiceBundle extends Model
 
     /**
      * Get all services in this bundle
-     * 
+     *
      * @return array
      */
     public function getServices()
@@ -254,7 +262,7 @@ class ServiceBundle extends Model
 
     /**
      * Calculate total value of all items (before discount)
-     * 
+     *
      * @return float
      */
     public function calculateItemsTotal()
@@ -276,7 +284,7 @@ class ServiceBundle extends Model
 
     /**
      * Calculate final bundle price (with discount applied)
-     * 
+     *
      * @return float|null
      */
     public function calculateFinalPrice()
@@ -301,7 +309,7 @@ class ServiceBundle extends Model
 
     /**
      * Get formatted final price
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -322,7 +330,7 @@ class ServiceBundle extends Model
 
     /**
      * Calculate savings amount
-     * 
+     *
      * @return float
      */
     public function calculateSavings()
@@ -335,7 +343,7 @@ class ServiceBundle extends Model
 
     /**
      * Get formatted savings
-     * 
+     *
      * @param string $currencySymbol
      * @return string
      */
@@ -352,7 +360,7 @@ class ServiceBundle extends Model
 
     /**
      * Get number of services in bundle
-     * 
+     *
      * @return int
      */
     public function getServiceCount()
@@ -362,7 +370,7 @@ class ServiceBundle extends Model
 
     /**
      * Check if bundle contains a specific service
-     * 
+     *
      * @param int $serviceId
      * @return bool
      */
@@ -379,7 +387,7 @@ class ServiceBundle extends Model
 
     /**
      * Validate bundle data
-     * 
+     *
      * @return array Array of error messages (empty if valid)
      */
     public function validate()
